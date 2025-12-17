@@ -1,0 +1,635 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #eaeaea;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #333;
+}
+
+/* --- Header --- */
+header {
+    background-color: #ffffff;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 100;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+    text-decoration: none;
+}
+
+.logo i {
+    color: #2b5d85;
+    font-size: 32px;
+    margin-right: 8px;
+}
+
+.tagline {
+    font-size: 12px;
+    color: #777;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.hamburger-menu {
+    font-size: 28px;
+    cursor: pointer;
+    color: #000;
+}
+
+/* --- Ana Kapsayıcı --- */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+/* --- Arama & Sonuç Kartları --- */
+.card-section {
+    padding: 40px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 1000px;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card h1 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    font-weight: 500;
+    color: #000;
+}
+
+.card h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #000;
+}
+
+/* Form Elemanları */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.input-field {
+    background-color: #dcdcdc;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #555;
+    outline: none;
+    width: 100%;
+}
+
+/* Select Ok İkonu */
+select.input-field {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23555%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 10px auto;
+}
+
+.bottom-section {
+    display: flex;
+    align-items: flex-end;
+    /* Tüm elemanları alt hizaya çeker */
+    gap: 20px;
+    /* Elemanlar arası boşluk */
+    margin-top: 30px;
+}
+
+/* 1. Özel İstekler Alanı */
+.keyword-group {
+    flex: 2;
+    /* Toplam genişliğin 2 birimini kaplar */
+}
+
+/* 2. Fiyat Aralığı Alanı */
+.price-group {
+    flex: 1.2;
+    /* Toplam genişliğin 1.2 birimini kaplar */
+    min-width: 180px;
+    /* Çok küçülmesini engeller */
+}
+
+.price-inputs {
+    display: flex;
+    gap: 10px;
+    /* Min ve Max kutusu arasındaki boşluk */
+}
+
+/* Fiyat kutularının içindeki "spinner" (yukarı aşağı okları) gizlemek isterseniz: */
+.price-inputs input[type=number]::-webkit-inner-spin-button,
+.price-inputs input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* 3. Buton Grubu */
+.button-group {
+    flex: 1;
+    /* Toplam genişliğin 1 birimini kaplar */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.search-btn,
+.cta-btn {
+    background-color: #1e5583;
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-btn {
+    width: 100%;
+}
+
+.search-btn:hover,
+.cta-btn:hover {
+    background-color: #163e5f;
+}
+
+.search-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* --- Loading & Sonuçlar --- */
+#dynamicContent {
+    width: 100%;
+    max-width: 1000px;
+    display: none;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #333;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    color: #777;
+    font-size: 14px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.logo-box {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.logo-placeholder {
+    font-weight: 800;
+    font-size: 24px;
+    text-align: center;
+}
+
+.hepsi-style {
+    color: #d1282e;
+}
+
+.sahibinden-style {
+    color: #000;
+    background-color: #ffe800;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+.emlakjet-style {
+    color: #00d66c;
+}
+
+.link-text a {
+    color: #1e5583;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* --- Bilgi Metni Bloğu --- */
+.info-text-section {
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px 20px 60px 20px;
+}
+
+.info-text-section h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.info-text-section p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 900px;
+}
+
+/* --- Özellikler (Features) Bölümü --- */
+.features-wrapper {
+    width: 100%;
+    background-color: #eaeaea;
+    /* Body ile aynı */
+    padding-bottom: 60px;
+}
+
+.features-header {
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.features-header h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.2;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.feature-card {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+}
+
+/* --- CTA (Call to Action) Beyaz Bölüm --- */
+.cta-section {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 80px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.cta-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.cta-text h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.cta-text p {
+    font-size: 16px;
+    color: #888;
+    max-width: 500px;
+    line-height: 1.5;
+}
+
+.cta-btn {
+    padding: 18px 40px;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #ffffff;
+    padding: 60px 0 40px 0;
+    width: 100%;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-brand .logo {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-brand .logo i {
+    font-size: 24px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #888;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #2b5d85;
+}
+
+.footer-col h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-col ul li a:hover {
+    color: #000;
+}
+
+/* --- Responsive Tasarım --- */
+@media (max-width: 900px) {
+
+    .form-grid,
+    .results-grid,
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .bottom-section {
+        flex-direction: column;
+        /* Mobilde alt alta diz */
+        align-items: stretch;
+        /* Genişliği tam yap */
+    }
+
+    .price-group {
+        width: 100%;
+        /* Mobilde tam genişlik */
+    }
+
+    .price-inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* Mobilde Min ve Max yan yana %50 paylaşsın */
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+
+    .cta-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .cta-text p {
+        margin: 0 auto;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    header {
+        padding: 15px 20px;
+    }
+
+    .tagline {
+        display: none;
+    }
+
+    .card {
+        padding: 30px 20px;
+    }
+
+    .info-text-section h2,
+    .features-header h2 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+/* --- News (Haber) Kartları --- */
+/* news.js içindeki inline stillerin yerine geçecek sınıflar */
+
+.news-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%; /* Kartların eşit boyda olması için */
+}
+
+.news-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.news-badge {
+    font-size: 11px;
+    color: #1e5583;
+    background: #e3f2fd;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.news-title {
+    margin: 0;
+    font-size: 15px;
+    color: #222;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.news-date {
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.news-link {
+    color: #333;
+    font-weight: 500;
+    font-size: 13px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: auto;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
+    transition: color 0.2s;
+}
+
+.news-link:hover {
+    color: #1e5583;
+}

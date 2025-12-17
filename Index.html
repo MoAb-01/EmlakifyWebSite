@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emlakify - İdeal Evi Bulun</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="brand-container">
+            <a href="#" class="logo">
+                <img src="Assets/Emlakify.png" style="width: clamp(40px, 8vw, 80px); height: auto; display: block;">
+                Emlakify
+            </a>
+            <span class="tagline">Emlak uzmanları ve müşterileri için ideal evi bulmanın en hızlı yolu</span>
+        </div>
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="container card-section">
+            <div class="card">
+                <h1>İdeal Evi Bulun</h1>
+                <form id="searchForm" onsubmit="handleSearch(event)">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>İl</label>
+                            <select id="citySelect" class="input-field" onchange="loadDistricts()">
+                                <option value="" selected disabled>İl Seçiniz</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>İlçe</label>
+                            <select id="districtSelect" class="input-field" onchange="loadNeighborhoods()" disabled>
+                                <option value="" selected disabled>Önce İl Seçiniz</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Mahalle/Sokak</label>
+                            <select id="neighborhoodSelect" class="input-field" disabled>
+                                <option value="" selected disabled>Önce İlçe Seçiniz</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Durum</label>
+                            <select id="durumSelect" class="input-field">
+                                <option value="" disabled selected>Seçiniz</option>
+                                <option>Satılık</option>
+                                <option>Kiralık</option>
+                                <option>Devren Satılık Konut</option>
+                                <option>Turistik Günlük Kiralık</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Emlak</label>
+                            <select id="emlakSelect" class="input-field">
+                                <option value="" disabled selected>Seçiniz</option>
+                                <option>Daire</option>
+                                <option>İş Yeri</option>
+                                <option>Rezidans</option>
+                                <option>Müstakil Ev</option>
+                                <option>Villa</option>
+                                <option>Çiftlik Evi</option>
+                                <option>Köşk & Konak</option>
+                                <option>Yalı</option>
+                                <option>Yalı Dairesi</option>
+                                <option>Yazlık</option>
+                                <option>Bina</option>
+                                <option>Arsa</option>
+                                <option>Konut Projeleri</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Oda Sayısı</label>
+                            <select id="odaSelect" class="input-field">
+                                <option value="">Seçiniz</option>
+                                <option>1+0</option>
+                                <option>1+1</option>
+                                <option>2+0</option>
+                                <option>2+1</option>
+                                <option>2+2</option>
+                                <option>3+0</option>
+                                <option>3+1</option>
+                                <option>3.5+1</option>
+                                <option>3+2</option>
+                                <option>3+3</option>
+                                <option>4+0</option>
+                                <option>4+1</option>
+                                <option>4.5+1</option>
+                                <option>4.5+2</option>
+                                <option>4+2</option>
+                                <option>4+3</option>
+                                <option>4+4</option>
+                                <option>5+1</option>
+                                <option>5.5+1</option>
+                                <option>5+2</option>
+                                <option>5+3</option>
+                                <option>5+4</option>
+                                <option>6+1</option>
+                                <option>6+2</option>
+                                <option>6.5+1</option>
+                                <option>6+3</option>
+                                <option>6+4</option>
+                                <option>7+1</option>
+                                <option>7+2</option>
+                                <option>7+3</option>
+                                <option>8+1</option>
+                                <option>8+2</option>
+                                <option>8+3</option>
+                                <option>8+4</option>
+                                <option>9+1</option>
+                                <option>9+2</option>
+                                <option>9+3</option>
+                                <option>9+4</option>
+                                <option>9+5</option>
+                                <option>9+6</option>
+                                <option>10 üzeri</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bottom-section">
+                        <div class="input-group keyword-group">
+                            <label>Özel İstekler (Anahtar kelimeler)</label>
+                            <input type="text" id="keywordInput" class="input-field" value=""
+                                placeholder="Örn: Site içi, dubleks...">
+                        </div>
+
+                        <div class="input-group price-group">
+                            <label>Fiyat Aralığı (TL)</label>
+                            <div class="price-inputs">
+                                <input type="number" id="minPriceInput" class="input-field" placeholder="Min" min="0"
+                                    oninput="validity.valid||(value='');">
+                                <input type="number" id="maxPriceInput" class="input-field" placeholder="Max" min="0"
+                                    oninput="validity.valid||(value='');">
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" id="submitBtn" class="search-btn">Arama Linklerini Oluştur</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="dynamicContent">
+                <div class="card">
+                    <div id="loadingState" class="loading-container">
+                        <div class="spinner"></div>
+                        <div class="loading-text">Site Linkleri ve Bölge Haberleri Oluşturuluyor...</div>
+                    </div>
+
+                    <div id="resultsState" style="display: none;">
+                        <h2>Oluşturulan Arama Linkleri</h2>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="logo-box">
+                                    <div class="logo-placeholder hepsi-style">
+                                        <i class="fa-solid fa-house-chimney"></i> hepsi<br>emlak
+                                    </div>
+                                </div>
+                                <div class="link-text">
+                                    <a id="hepsiEmlakLink" href="#" target="_blank">Hepsiemlak</a> sitesindeki ilanları görmek için tıklayınız
+                                </div>
+                            </div>
+
+                            <div class="result-item">
+                                <div class="logo-box">
+                                    <div class="logo-placeholder sahibinden-style">S</div>
+                                </div>
+                                <div class="link-text">
+                                    <a id="sahibindenLink" href="#" target="_blank">Sahibinden</a> sitesindeki ilanları görmek için tıklayınız
+                                </div>
+                            </div>
+
+                            <div class="result-item">
+                                <div class="logo-box">
+                                    <div class="logo-placeholder emlakjet-style">
+                                        <i class="fa-solid fa-house-user"></i> emlakjet
+                                    </div>
+                                </div>
+                                <div class="link-text">
+                                    <a id="emlakjetLink" href="#" target="_blank">Emlakjet</a> sitesindeki ilanları görmek için tıklayınız
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="newsSection" style="display: none; margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
+                            <h2 style="font-size: 20px; margin-bottom: 20px;">
+                                <i class="fa-solid fa-city"></i> Bölge Gündemi ve Yaşam
+                            </h2>
+                            <div id="newsGrid" class="results-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-text-section">
+            <h2>Tek Bir Web Sitesinden Erişin</h2>
+            <p>Emlakify, özellikle sektöre yeni katılan gayrimenkul uzmanlarının ve müşterilerin...</p>
+        </div>
+        <div class="features-wrapper">
+             <div class="container">
+                <div class="features-header">
+                    <h2>Gelişmiş arama teknolojimiz ve geniş ilan ağımızla yanınızdayız.</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Kriterlerinize Uygun İlanları Listeleyin</h3>
+                        <p>Birden fazla platformdaki binlerce gayrimenkul listesine tek bir kullanışlı yerden erişin</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Gelişmiş Filtreleme Aracı</h3>
+                        <p>Konum, fiyat, boyut ve daha fazlası için mükemmel filtrelerimizle mükemmel mülkünüzü bulun</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Piyasa Değerini Keşfedin</h3>
+                        <p>Seçtiğiniz kriterlere uyan emlakların tahmini piyasa değerini anında öğrenerek müşterilerinize veri odaklı danışmanlık verin.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <div class="cta-text">
+                        <h2>Hayalinizdeki Ev Sizi Daha fazla beklemesin</h2>
+                        <p>Hemen şimdi binlerce ilan arasından size en uygun olanı aramaya başlayın.</p>
+                    </div>
+                    <button class="cta-btn">Arama Yapın</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-brand">
+                    <a href="#" class="logo">
+                        <img src="Assets/Emlakify.png" style="width: 30px;"> Emlakify
+                    </a>
+                </div>
+                </div>
+        </div>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
