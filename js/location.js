@@ -11,8 +11,8 @@ export async function loadCities() {
 }
 
 export async function loadDistricts() {
-    districtSelect.innerHTML = `<option selected disabled>İlçe Seçiniz</option>`;
-    neighborhoodSelect.innerHTML = `<option selected disabled>Önce İlçe Seçiniz</option>`;
+    districtSelect.innerHTML = `<option value="" selected disabled>İlçe Seçiniz</option>`;
+    neighborhoodSelect.innerHTML = `<option value="" selected disabled>Önce İlçe Seçiniz</option>`;
     districtSelect.disabled = true; neighborhoodSelect.disabled = true;
 
     const cityId = citySelect.value;
@@ -27,7 +27,7 @@ export async function loadDistricts() {
 }
 
 export async function loadNeighborhoods() {
-    neighborhoodSelect.innerHTML = `<option selected disabled>Yükleniyor...</option>`;
+    neighborhoodSelect.innerHTML = `<option value="" selected disabled>Yükleniyor...</option>`;
     neighborhoodSelect.disabled = true;
     const districtId = districtSelect.value;
     if (!districtId) return;
@@ -36,16 +36,16 @@ export async function loadNeighborhoods() {
         const response = await fetch(`https://turkiyeapi.dev/api/v1/neighborhoods?districtId=${districtId}`);
         if (!response.ok) throw new Error("Hata");
         const data = await response.json();
-        neighborhoodSelect.innerHTML = `<option selected disabled>Mahalle Seçiniz</option>`;
+        neighborhoodSelect.innerHTML = `<option value="" selected disabled>Mahalle Seçiniz</option>`;
         if (data.data) {
             populateSelect(neighborhoodSelect, data.data.map(n => ({ value: n.id, text: n.name })));
             neighborhoodSelect.disabled = false;
         } else {
-            neighborhoodSelect.innerHTML = `<option selected disabled>Mahalle bulunamadı</option>`;
+            neighborhoodSelect.innerHTML = `<option value="" selected disabled>Mahalle bulunamadı</option>`;
         }
     } catch (error) {
         console.error(error);
-        neighborhoodSelect.innerHTML = `<option selected disabled>Tümü</option>`;
+        neighborhoodSelect.innerHTML = `<option value="" selected disabled>Tümü</option>`;
         neighborhoodSelect.disabled = false;
     }
 }

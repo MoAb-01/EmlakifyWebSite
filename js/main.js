@@ -51,10 +51,10 @@ function handleSearch(event) {
 
     const inputs = {
         sehir: citySelect.options[citySelect.selectedIndex].text,
-        ilce: districtSelect.options[districtSelect.selectedIndex]?.text || "",
-        mahalle_sokak: (!neighborhoodSelect.disabled && neighborhoodSelect.selectedIndex > 0) 
-                        ? neighborhoodSelect.options[neighborhoodSelect.selectedIndex].text 
-                        : "",
+        ilce: (districtSelect.value && districtSelect.selectedIndex > 0) ? districtSelect.options[districtSelect.selectedIndex].text : "",
+        mahalle_sokak: (!neighborhoodSelect.disabled && neighborhoodSelect.selectedIndex > 0)
+            ? neighborhoodSelect.options[neighborhoodSelect.selectedIndex].text
+            : "",
         durum: document.getElementById('durumSelect').value,
         emlak_turu: document.getElementById('emlakSelect').value,
         oda_sayisi: document.getElementById('odaSelect').value,
@@ -65,7 +65,7 @@ function handleSearch(event) {
 
     // 1. Link Oluştur (sahibinden.js'den geliyor)
     const sahibindenLink = generateSahibindenUrl(inputs);
-    if(sahibindenLinkBtn) sahibindenLinkBtn.href = sahibindenLink;
+    if (sahibindenLinkBtn) sahibindenLinkBtn.href = sahibindenLink;
 
     // 2. Hepsi Emlak Linki Oluştur (hepsiemlak.js'den geliyor)
     const { url, error } = generateHepsiEmlakUrl(inputs);
@@ -96,8 +96,8 @@ function handleSearch(event) {
     // 4. Emlakjet Linki Oluştur
     const emlakjetLinkBtn = document.getElementById('emlakjetLink');
     if (emlakjetLinkBtn) {
-    const result = generateEmlakJetUrl(inputs);
-    emlakjetLinkBtn.href = result.url;
-    emlakjetLinkBtn.innerText = "Emlakjet Linkini Görüntüle";
+        const result = generateEmlakJetUrl(inputs);
+        emlakjetLinkBtn.href = result.url;
+        emlakjetLinkBtn.innerText = "Emlakjet Linkini Görüntüle";
     }
 }

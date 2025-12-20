@@ -2,6 +2,7 @@ import { normalizeText } from './utils.js';
 
 export function generateHepsiEmlakUrl(inputs) {
   const {
+    sehir,
     ilce,
     mahalle_sokak,
     oda_sayisi,
@@ -27,14 +28,15 @@ export function generateHepsiEmlakUrl(inputs) {
 
   const normalizeOda = makeSlug((oda_sayisi || "").replace(/\+/g, "-"));
   const normalizeIlce = makeSlug(ilce);
+  const normalizeSehir = makeSlug(sehir);
   const normalizeMahalle = cleanNeighborhood(mahalle_sokak);
   const normalizeTur = makeSlug(emlak_turu);
 
   let finalSlug = normalizeTur;
   if (normalizeTur === "daire" && normalizeOda) {
-      finalSlug = `daire-${normalizeOda}`;
+    finalSlug = `daire-${normalizeOda}`;
   }
-  const locationPart = [normalizeIlce, normalizeMahalle]
+  const locationPart = [normalizeIlce || normalizeSehir, normalizeMahalle]
     .filter(Boolean)
     .join("-");
 
